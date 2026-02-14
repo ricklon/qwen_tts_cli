@@ -84,22 +84,22 @@ uv run -- qwen-tts-cli \
 
 ```bash
 uv run -- qwen-tts-cli \
-  --text-file lesson1.txt \
+  --text-file text/airport_lesson.txt \
   --language Italian \
   --instruct "Voce di insegnante, ritmo lento, pronuncia chiara." \
-  --out airport.wav
+  --out audio/airport.wav
 ```
 
 ---
 
 ## 📄 Example Input File
 
-**lesson1.txt**
+**text/airport_lesson.txt**
 
 ```
-All’aeroporto:
+All'aeroporto:
 
-Dov’è il ritiro bagagli?
+Dov'è il ritiro bagagli?
 Dove posso prendere un taxi?
 Dove si prende lo shuttle per andare alla Stazione Termini?
 ```
