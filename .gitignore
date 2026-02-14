@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Virtual env
+.venv/
+
+# uv cache
+.uv/
+
+# Audio outputs
+audio/*.wav
+
+# HF cache
+~/.cache/huggingface/
+~/.cache/torch/
+
+# OS
+.DS_Store
+Thumbs.db
+
