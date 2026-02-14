@@ -21,6 +21,7 @@ This project is designed for:
 * 💻 CPU or GPU support
 * ⚡ uv-managed reproducible environment
 * 🧩 Click-based CLI
+* 🤖 Smolagents integration for AI agent workflows
 
 ---
 
@@ -171,8 +172,35 @@ uv run -- python -c "import torch; print(torch.cuda.is_available())"
 Run script directly:
 
 ```bash
-uv run -- python main.py --text "Test" --out test.wav
+uv run -- python src/qwen_tts_cli/cli.py --text "Test" --out audio/test.wav
 ```
+
+---
+
+## 🤖 AI Agent Integration (Smolagents)
+
+Use Qwen-TTS as a tool in AI agent workflows with [smolagents](https://github.com/huggingface/smolagents):
+
+**Install smolagents support:**
+
+```bash
+uv sync --extra smolagents
+```
+
+**Use as a tool:**
+
+```python
+from smolagents import CodeAgent, HfApiModel
+from qwen_tts_cli.smolagent_tool import QwenTTSTool
+
+tts_tool = QwenTTSTool()
+model = HfApiModel(model_id="Qwen/Qwen2.5-Coder-32B-Instruct")
+agent = CodeAgent(tools=[tts_tool], model=model, add_base_tools=True)
+
+agent.run("Generate Italian audio saying 'Benvenuto!' in a teacher's voice")
+```
+
+See [examples/README.md](examples/README.md) for more details.
 
 ---
 

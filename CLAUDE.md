@@ -117,6 +117,27 @@ uv run -- qwen-tts-cli \
 uv run -- qwen-tts-cli --text "Test" --out audio/test.wav --device cpu
 ```
 
+## Smolagents Integration
+
+The project includes a smolagents tool wrapper at [src/qwen_tts_cli/smolagent_tool.py](src/qwen_tts_cli/smolagent_tool.py).
+
+**Install smolagents:**
+```bash
+uv sync --extra smolagents
+```
+
+**Two implementation approaches:**
+1. **`QwenTTSTool` class** - Full `Tool` subclass with all metadata
+2. **`create_qwen_tts_tool()` function** - Returns a `@tool` decorated function (simpler)
+
+**Examples:** See [examples/smolagent_example.py](examples/smolagent_example.py) and [examples/README.md](examples/README.md)
+
+**Key points:**
+- Tool calls `uv run -- qwen-tts-cli` via subprocess
+- All imports must be inside methods (required for Hub sharing)
+- Returns path to generated audio file as string
+- Can be shared to Hugging Face Hub with `tool.push_to_hub()`
+
 ## Git Workflow
 
 **Default branch:** `main` (not `master`)
